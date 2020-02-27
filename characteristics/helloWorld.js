@@ -7,7 +7,8 @@ var BlenoCharacteristic = bleno.Characteristic;
 var HelloWorldCharacteristic = function() {
 
  HelloWorldCharacteristic.super_.call(this, {
-     uuid: '8df71e84-7d7f-4739-a6f9-a42577fe904a',
+     name: 'Hello',
+     uuid: '5aff19d1-3a6f-4c04-94a0-b333c0658898',
      properties: ['read'],
     });
 

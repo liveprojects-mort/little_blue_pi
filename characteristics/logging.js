@@ -11,7 +11,8 @@ var BlenoCharacteristic = bleno.Characteristic;
 var loggingCharacteristic = function() {
 
  loggingCharacteristic.super_.call(this, {
-     uuid: '8df71e84-7d7f-4739-a6f9-a42577fe904a',
+     name: 'Logging', 
+     uuid: '8d67a3de-dc4c-4a99-969f-dec36fba8e6e',
      properties: ['write','read'],
     });
 

@@ -6,7 +6,7 @@ var BlenoCharacteristic = bleno.Characteristic;
 
 var LoadAverageCharacteristic = function() {
  LoadAverageCharacteristic.super_.call(this, {
-    uuid: '8df71e84-7d7f-4739-a6f9-a42577fe904a',
+    uuid: '2c88d84b-03e9-41e5-8832-ebd8cabf115e ',
     properties: ['read'],
   });
 
