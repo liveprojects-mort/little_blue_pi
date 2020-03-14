@@ -2,6 +2,9 @@ var bleno = require('bleno');
 var spawn = require("child_process").spawn;
 var systemProcess = require('process');
 var pythonProcess = null;
+var pythonProcess2 = null;
+
+
 
 
 function startLogging()
@@ -9,14 +12,21 @@ function startLogging()
 
         if (! pythonProcess)
         {
-            pythonProcess = spawn ("python",["/home/pi/github/little_pulse/little_pulse/code/pulse_sensor/pulsesensor2.py"]);
+            pythonProcess = spawn('python',["/home/pi/github/little_pulse/little_pulse/code/pulse_sensor/pulseWriter.py"]);
+            
+            pythonProcess.stdout.on('data', function(data){
+                console.log('stdout:' + data);
+            });
+            
+        };
 
-        }
+        if (! pythonProcess2)
+        {
+            pythonProcess2 = spawn('python',["/home/pi/grove.py/grove/grove_gsr_sensor.py"]);
+         
+        };
         
-        
-
-
-}
+    };
 
 function stopLogging()
 { 
@@ -28,6 +38,23 @@ function stopLogging()
             pythonProcess == null;
         }
 
+        if(!! pythonProcess2)
+        {
+            pythonProcess2.kill();
+            pythonProcess2 == null;
+        }
+
+
+}
+
+function DeleteFiles()
+{
+    if (! pythonProcess)
+        {
+            pythonProcess = spawn('python',["/home/pi/github/little_pulse/little_pulse/code/pulse_sensor/DeleteFile.py"]);
+            
+            
+        };
 
 }
 
@@ -59,6 +86,7 @@ function isLogging()
 
 module.exports = {startLogging : startLogging,
 stopLogging : stopLogging,
-isLogging : isLogging};
+isLogging : isLogging,
+DeleteFiles : DeleteFiles};
 
 

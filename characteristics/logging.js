@@ -26,13 +26,32 @@ loggingCharacteristic.prototype.onWriteRequest = function(data, offset, withoutR
         this._value = data;
     }
 
+    
     console.log('loggingCharacteristic - onWriteRequest: value = ' +
     this._value.slice(offset, offset + bleno.mtu).toString()
   );
 
   if( this._value == 1)
   {
+    console.log('Logging Started');
     sensor.startLogging();
+  }
+
+  else if(this._value == 2)
+  {
+    sensor.stopLogging();
+    console.log('Logging Stopped');
+  }
+
+  else if(this._value == 3)
+  {
+    sensor.DeleteFiles();
+    console.log('File Deleted');
+  }
+
+
+  else {
+    console.log('Incorrect Input');
   }
 
 
@@ -42,7 +61,7 @@ loggingCharacteristic.prototype.onWriteRequest = function(data, offset, withoutR
 loggingCharacteristic.prototype.onReadRequest = function(offset, callback) {
 
   if(!offset) {
-
+    
       this._value = new Buffer(JSON.stringify(
         sensor.isLogging()
         ));
